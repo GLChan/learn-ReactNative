@@ -9,24 +9,26 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
 
 export default class AwesomeProject extends Component {
   render() {
+    let pic = {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+    };
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Image source={pic} style={{width: 193, height: 110}} />
+      <Greeting/>
+    );
+  }
+}
+
+class Greeting extends Component {
+  render() {
+    return (
+      <Text>Hello {this.props.name}!</Text>
     );
   }
 }
@@ -49,5 +51,17 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+class LotsOfGreetings extends Component {
+  render() {
+    return (
+      <View style={{alignItems: 'center'}}>
+        <Greeting name='Rexxar' />
+        <Greeting name='Jaina' />
+        <Greeting name='Valeera' />
+      </View>
+    );
+  }
+}
 
+AppRegistry.registerComponent('LotsOfGreetings', () => LotsOfGreetings);
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
